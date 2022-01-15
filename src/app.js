@@ -4,7 +4,6 @@ import cors from 'cors'
 import pkg from '../package.json'
 import config from './config'
 const app = express();
-//localhost:81
 
 var corOptions = {
     origin: "http://localhost:4200",
@@ -12,7 +11,7 @@ var corOptions = {
     optionSuccessStatus:200
 }
 app.set('pkg', pkg);
-app.use(morgan(config.Mode));
+app.use(morgan(config.MODE));
 app.use(cors(corOptions));
 app.use(express.urlencoded({
     extended: false

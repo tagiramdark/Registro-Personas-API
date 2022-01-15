@@ -1,6 +1,7 @@
 import mysql from 'mysql'
 import {promisify} from 'util';
 import {database} from './config'
+
 const pool = mysql.createPool(database);
 
 pool.getConnection((err,connection)=>{
