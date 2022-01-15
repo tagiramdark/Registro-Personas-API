@@ -10,21 +10,25 @@ export default gql`
         apellidoPaterno:String!,
         apellidoMaterno:String!,
         direccion:String!,
-        telefono:String!
+        telefono:Int!
     }
     #------------------------------------------------------------
     #QUERIES
     #------------------------------------------------------------
     extend type Query{
-        persona: persona,
+        persona(id:Int!): persona,
         personas:[persona]
+        searchPersona(search:String!):[persona]
 
     }
     #------------------------------------------------------------
     #MUTATIONS
     #------------------------------------------------------------
     extend type Mutation{
-        createPersona(input: CreatePersonaInput): Persona!       
+        createPersona(input: CreatePersonaInput): persona!         
+        updatePersona(input: UpdatePersonaInput): Boolean! 
+        deletePersona(input: PersonaID): Boolean!    
+
     }
     #------------------------------------------------------------
     #INPUT
@@ -35,5 +39,17 @@ export default gql`
         apellidoMaterno:String!,
         direccion:String!,
         telefono:String!
+    } 
+    
+    input UpdatePersonaInput{
+        id:ID!,
+        nombre:String!,
+        apellidoPaterno:String!,
+        apellidoMaterno:String!,
+        direccion:String!,
+        telefono:String!
+    },
+    input PersonaID{
+        id:ID!
     }
 `

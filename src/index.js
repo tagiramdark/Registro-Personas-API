@@ -1,4 +1,6 @@
-import app from './app'
+import server from './server'
 import {PORT} from './config'
-app.listen(PORT);
-console.log('Server Listen on port',PORT)
+
+server.listen({port:PORT},()=>{
+    console.log('Server Listen on port',PORT)
+});
