@@ -10,24 +10,28 @@ export default gql`
         apellidoPaterno:String!,
         apellidoMaterno:String!,
         direccion:String!,
-        telefono:Int!
+        telefono:String!
     }
+    type resultpersonas{
+        results:[persona]
+    }
+    
     #------------------------------------------------------------
     #QUERIES
     #------------------------------------------------------------
     extend type Query{
-        persona(id:Int!): persona,
-        personas:[persona]
-        searchPersona(search:String!):[persona]
+        persona(id:Int!): resultpersonas,
+        personas:resultpersonas
+        searchPersona(search:String!):resultpersonas
 
     }
     #------------------------------------------------------------
     #MUTATIONS
     #------------------------------------------------------------
     extend type Mutation{
-        createPersona(input: CreatePersonaInput): persona!         
-        updatePersona(input: UpdatePersonaInput): Boolean! 
-        deletePersona(input: PersonaID): Boolean!    
+        createPersona(input: CreatePersonaInput): resultpersonas!         
+        updatePersona(input: UpdatePersonaInput): resultpersonas! 
+        deletePersona(input: PersonaID): resultpersonas!    
 
     }
     #------------------------------------------------------------
